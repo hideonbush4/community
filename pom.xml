@@ -87,11 +87,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
+
 
     </dependencies>
 
@@ -109,7 +105,7 @@
 
                     <user>root</user>
                     <password>root</password>
-<!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
+                    <driver>com.mysql.cj.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost/springboot?serverTimezone=UTC</url>
 <!--                    <table>user</table>-->
                 </configuration>

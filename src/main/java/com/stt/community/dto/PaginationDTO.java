@@ -22,13 +22,18 @@ public class PaginationDTO {
     //totalCount总记录数
     public void setPagination(Integer totalCount, Integer page, Integer size) {
         //totalpage总页数
-        Integer totalpage;
-        if (totalCount % size == 0) {
-            totalpage = totalCount / size;
-        } else {
-            totalpage = totalCount / size + 1;
+        Integer totalpage=1;
+        if(totalCount==0){
+            this.totalPage=1;
+        }else {
+            if (totalCount % size == 0) {
+                totalpage = totalCount / size;
+            } else {
+                totalpage = totalCount / size + 1;
+            }
         }
-        totalPage=totalpage;
+
+        this.totalPage=totalpage;
 
         this.page=page;
 

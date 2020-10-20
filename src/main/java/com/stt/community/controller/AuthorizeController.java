@@ -5,6 +5,7 @@ import com.stt.community.dto.GithubUser;
 import com.stt.community.mapper.UserMapper;
 import com.stt.community.model.User;
 import com.stt.community.provider.GithubProvider;
+import com.stt.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class AuthorizeController {
     private String redirectUrl;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code")String code,
@@ -56,7 +57,7 @@ public class AuthorizeController {
             user1.setGmt_create(System.currentTimeMillis());
             user1.setGmt_modified(user1.getGmt_create());
             user1.setAvatar_url(githubUser.getAvatar_url());
-            userMapper.insert(user1);
+            userService.createOrUpdate(user1);
             response.addCookie(new Cookie("token",token));
 
             //登录成功，写cookie和session
@@ -65,5 +66,14 @@ public class AuthorizeController {
             //登录失败
             return "redirect:/";
         }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request
+                        ,HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }
