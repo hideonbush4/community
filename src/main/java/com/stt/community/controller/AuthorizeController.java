@@ -53,10 +53,10 @@ public class AuthorizeController {
             String token = UUID.randomUUID().toString();
             user1.setToken(token);
             user1.setName(githubUser.getName());
-            user1.setAccount_id(githubUser.getId().toString());
-            user1.setGmt_create(System.currentTimeMillis());
-            user1.setGmt_modified(user1.getGmt_create());
-            user1.setAvatar_url(githubUser.getAvatar_url());
+            user1.setAccountId(githubUser.getId().toString());
+            user1.setGmtCreate(System.currentTimeMillis());
+            user1.setGmtModified(user1.getGmtCreate());
+            user1.setAvatarUrl(githubUser.getAvatar_url());
             userService.createOrUpdate(user1);
             response.addCookie(new Cookie("token",token));
 

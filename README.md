@@ -10,3 +10,8 @@ https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-bo
 
 ##工具
 http://git-scm.com/download
+
+```bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
